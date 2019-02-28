@@ -1,0 +1,138 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/register.js"]}){
+            <form id="userForm" lay-filter="userForm" class="layui-form model-form">
+                
+			    <input name="userId" type="hidden"/>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">账号<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="account" placeholder="请输入账号" type="text" class="layui-input" lay-verify="required" required/>
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">密码<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="password" placeholder="请输入密码" type="password" class="layui-input" lay-verify="required|psw" required/>
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">重复密码<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="rePassword" placeholder="请输入重复密码" type="password" class="layui-input" lay-verify="required|repsw" required/>
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+                    <label class="layui-form-label">真实名称<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input name="name" placeholder="请输入真实名称" type="text" class="layui-input" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+			        <label class="layui-form-label">邮箱<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="email" placeholder="请输入邮箱" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+<!-- 			    <div class="layui-form-item">
+			        <label class="layui-form-label">地址<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="addressId" placeholder="请输入地址" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">注册地址<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="address" placeholder="请输入地址" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">法人名称<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="corporation" placeholder="请输入地址" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">法人手机号<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="corporationPhone" placeholder="请输入地址" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">委托人<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="entrust" placeholder="请输入地址" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">委托人电话<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="entrustPhone" placeholder="请输入地址" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">企业类型<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="enterpriseType" placeholder="请输入地址" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">税号<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="tariff" placeholder="请输入地址" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">成立日期<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input id="foundTime" name="foundTime" placeholder="成立日期" type="text" class="layui-input" autocomplete="off"/>
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">统一信用代码<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="credit" placeholder="统一信用代码" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">开户银行<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="bank" placeholder="开户银行" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">开户银行账号<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="bankAccount" placeholder="开户银行账号" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">营业执照图片<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="licencePic" placeholder="开户银行账号" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">有效日期<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input id="lValidityTime" name="lValidityTime" placeholder="有效日期" type="text" class="layui-input" autocomplete="off"/>
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">授权证明复印件图片<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input name="authorizePic" placeholder="开户银行账号" type="text" class="layui-input" lay-verify="required|email" required />
+			        </div>
+			    </div>
+			    <div class="layui-form-item">
+			        <label class="layui-form-label">授权证明有效期<span style="color: red;">*</span></label>
+			        <div class="layui-input-block">
+			            <input id="aValidityTime" name="lValidityTime" placeholder="有效日期" type="text" class="layui-input" autocomplete="off"/>
+			        </div>
+			    </div> -->
+                <div class="layui-form-item">
+				    <div class="layui-input-block">
+	                    <button  lay-filter="btnSubmit" id="register" class="layui-btn" lay-submit>注册</button>
+	      				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                	</div>
+                </div>
+            </form>
+@}

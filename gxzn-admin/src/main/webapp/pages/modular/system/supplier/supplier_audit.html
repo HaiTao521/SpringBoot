@@ -1,0 +1,115 @@
+@layout("/common/_container.html",{bg:"bg-white",plugins:["viewerjs"],css:["/assets/common/css/image.css"],js:["/assets/modular/system/supplier/supplier_audit.js"]}){
+<form id="userForm" lay-filter="userForm" class="layui-form model-form">
+    <input name="userId" type="hidden"/>
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+		    <li class="layui-this">基本资料</li>
+		    <li>营业执照</li>
+		    <li>其他材料</li>
+		</ul>
+	    <div class="layui-tab-content" >
+	        <div class="layui-tab-item layui-show">
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">姓名<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input name="name" placeholder="请输入姓名" type="text" class="layui-input layui-disabled" disabled="disabled" readonly="readonly"/>
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">邮箱<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input name="email" placeholder="请输入邮箱" type="text" class="layui-input layui-disabled"  disabled="disabled" readonly="readonly"/>
+		            </div>
+		        </div>
+		        <!-- <div class="layui-form-item">
+		            <label class="layui-form-label">部门<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input id="deptId" name="deptId" type="hidden">
+		                <input id="deptName" name="deptName" placeholder="请输入部门" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+		            </div>
+		        </div> -->
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">注册地址<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input name="address" placeholder="请输入地址" type="text" class="layui-input layui-disabled" disabled="disabled" readonly="readonly"/>
+		            </div>
+		        </div>
+		         <div class="layui-form-item">
+		            <label class="layui-form-label">法人<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input name="corporation" placeholder="请输入法人姓名" type="text" class="layui-input layui-disabled"  disabled="disabled" readonly="readonly"/>
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">联系电话<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input name="corporationPhone" placeholder="请输入电话" type="text" class="layui-input layui-disabled" disabled="disabled" readonly="readonly"/>
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">成立日期<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input id="foundTime" name="foundTime" placeholder="请输入成立日期" type="text" class="layui-input layui-disabled" autocomplete="off"  disabled="disabled" readonly="readonly"/>
+		            </div>
+		        </div> 
+		         <div class="layui-form-item">
+		            <label class="layui-form-label">信用代码<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input name="credit" placeholder="请输入统一信用代码" type="text" class="layui-input layui-disabled"  disabled="disabled" readonly="readonly"/>
+		            </div>
+		        </div>
+		        <div class="layui-form-item">
+		            <label class="layui-form-label">开户行<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input name="bank" placeholder="请输入开户行" type="text" class="layui-input layui-disabled"  disabled="disabled" readonly="readonly"/>
+		            </div>
+		        </div>
+				<div class="layui-form-item">
+		            <label class="layui-form-label">开户行账号<span style="color: red;">*</span></label>
+		            <div class="layui-input-block">
+		                <input name="bankAccount" placeholder="请输入开户行账号" type="text" class="layui-input layui-disabled"  disabled="disabled" readonly="readonly"/>
+		            </div>
+		        </div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">有效期<span style="color: red;">*</span></label>
+					<div class="layui-input-block">
+						<input name="validityTime" placeholder="请输入营业执照有效期" type="text" class="layui-input layui-disabled"  disabled="disabled" readonly="readonly"/>
+					</div>
+				</div>
+	        </div>
+	        <div class="layui-tab-item">
+			      <img alt="" src="" data-imgurl="" id="licencePic" style="width:200px;height:200px;margin:0 10px 10px 0;border:none"/>
+	        </div>
+	        <div class="layui-tab-item">
+	           <ul id="images">
+	           </ul>
+	        </div>
+	    </div>
+    </div>
+     <div class="layui-form-item">
+         <label class="layui-form-label">状态<span style="color: red;">*</span></label>
+         <div class="layui-input-block">
+            <input type="radio" name="examine" value="0" title="通过"/>
+            <input type="radio" name="examine" value="1" title="不通过"/>
+         </div>
+     </div>
+    <div class="layui-form-item text-right" style="padding-bottom: 10%">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>保存</button>
+    </div>
+</form>
+<script id="authorizePicTpl" type="text/html">
+   {{#  if(!d.authorizePicPaths || d.authorizePicPaths.length === 0){ }}
+    无数据
+   {{#  } }} 
+   {{#  layui.each(d.authorizePicPaths, function(index, item){ }}
+    <li>
+    <div class = "float">
+       <div class="result">
+            <img alt="" data-imgurl="{{ item }}" src="{{ d.authorizePicThumbnailPaths[index] }}"/>
+        </div>
+    </div>
+    </li>
+   {{#  }); }}
+</script>
+@}

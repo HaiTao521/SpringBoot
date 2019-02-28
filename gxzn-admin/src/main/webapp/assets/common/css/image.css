@@ -1,0 +1,21 @@
+.float {
+	float: left;
+	width: 200;
+	height: 200;
+	overflow: hidden;
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+	padding: 5px;
+	margin: 5px;
+}
+
+.float img {
+	position: relative;
+}
+
+.result {
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	box-sizing: border-box;
+}

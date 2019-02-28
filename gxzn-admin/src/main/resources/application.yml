@@ -1,0 +1,56 @@
+server:
+  port: 80
+  max-http-header-size: 10240
+
+procurement-gov:
+  swagger-open: true                #是否开启swagger (true/false)
+  kaptcha-open: false               #是否开启登录时验证码 (true/false)
+  spring-session-open: true        #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+  muti-datasource-open: true  #开启多数据源
+  file-upload-path: E:/gezn #上传目录
+
+beetl:
+  resource-auto-check: true         #热加载beetl模板，开发时候用
+
+spring:
+  profiles:
+    active: dev
+  mvc:
+    view:
+      prefix: /pages
+      static-path-pattern: /assets/*,/images/*
+  devtools:
+    restart:
+      enabled: false
+      additional-paths: src/main/java
+      additional-exclude: assets/**,pages/**
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+
+mybatis-plus:
+  typeAliasesPackage: com.gxzn.admin.modular.*.model
+  mapper-locations: classpath*:**/mapping/*.xml
+  global-config:
+     banner: false
+     db-config:
+        id-type: id_worker
+     refresh: true
+  configuration:
+     map-underscore-to-camel-case: true
+     # 配置的缓存的全局开关
+     cache-enabled: false
+     #meta-object-handler: com.baomidou.springboot.MyMetaObjectHandler
+     # 延时加载的开关
+     lazyLoadingEnabled: true
+     # 开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+     multipleResultSetsEnabled: true
+     # 打印sql语句,调试用
+     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+code-gen:
+   db-name: gxzn-admin
+log:
+  path: logs/web-logs

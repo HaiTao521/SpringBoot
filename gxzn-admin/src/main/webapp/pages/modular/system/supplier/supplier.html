@@ -1,0 +1,60 @@
+@layout("/common/_container.html",{plugins:["ztree"],js:["/assets/modular/system/supplier/supplier.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">供应商管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input id="name" class="layui-input" type="text" placeholder="账号/姓名/手机号"/>
+                            </div>
+                            <div class="layui-inline">
+                                <input id="timeLimit" class="layui-input" type="text" placeholder="注册时间"/>
+                            </div>
+                            <div class="layui-inline">
+                                <select name="examine" id="examine" lay-verify="">
+									  <option value="">请选择一个审核状态</option>
+									  <option value="2">待审</option>
+									  <option value="3">再审</option>
+									  <option value="0">通过</option>
+									  <option value="1">未通过</option>
+								</select>  
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="supplierTable" lay-filter="supplierTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    @if(shiro.hasPermissionCode("to_supplier_audit")){
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="audit">审核</a>
+    @}
+    @if(shiro.hasPermissionCode("supplier_delete")){
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+    @}
+    @if(shiro.hasPermissionCode("supplier_to_assign_role")){
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="roleAssign">分配角色</a>
+    @}
+    @if(shiro.hasPermissionCode("supplier_reset")){
+    <a class="layui-btn layui-btn-xs" lay-event="reset">重置密码</a>
+    @}
+</script>
+
+<script type="text/html" id="statusTpl">
+    <input type="checkbox" lay-filter="status" value="{{d.userId}}" lay-skin="switch" lay-text="正常|冻结" {{d.status=='ENABLE'?'checked':''}} />
+</script>
+@}

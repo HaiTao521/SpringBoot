@@ -1,0 +1,56 @@
+spring:
+  redis:
+    host: 114.115.234.251
+    password:
+    port: 20004
+    database: 0
+    lettuce:
+      pool:
+        max-active: 100
+        max-idle: 25
+        max-wait: 100000
+        min-idle: 0
+    timeout: 5000
+  session:
+    store-type: Redis
+  devtools:
+    restart:
+      enabled: true
+  aop:
+    proxy-target-class: true
+  datasource:
+    dynamic:
+      druid:
+        initial-size: 2
+        min-idle: 1
+        max_active: 20
+        max_wait: 60000
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000
+        validation-query: select 1
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        filters: wall,mergeStat
+      primary: master
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/admin_test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+          username: root
+          password: 123456
+  mail:
+    host: smtp.163.com
+    username: smileorsilence@163.com
+    password:
+    properties:
+      subject: 平台注册回信（系统发送，请不要回复）
+      successtext: 恭喜您，您成功注册。
+      failtext: 对不起，审核失败，请登录系统检查资料是否填写完整。
+      cc:
+      mail:
+        smtp:
+          auth: true
+          timeout: 30000

@@ -1,0 +1,193 @@
+@layout("/common/_container.html",{title:"个人中心",plugins:["viewerjs"],css:["/assets/modular/frame/user_info.css"],js:["/assets/modular/frame/user_info.js"]}){
+<div class="layui-body-header">
+    <span class="layui-body-header-title">个人中心</span>
+    <span class="layui-breadcrumb pull-right">
+        <a href="${ctxPath}/system/welcome">首页</a>
+        <a><cite>个人中心</cite></a>
+    </span>
+</div>
+
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <!-- 左 -->
+        <div class="layui-col-sm12 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding: 25px;">
+                    <div class="text-center layui-text">
+                        <div class="user-info-head" id="imgHead">
+                            <img src="${avatar}"/>
+                        </div>
+                        <h2 style="padding-top: 20px;">${name}</h2>
+                        <p style="padding-top: 8px;">${roleName!} ${deptName!}</p>
+                    </div>
+                    <div class="layui-text" style="padding-top: 30px;">
+                        <div class="info-list-item">
+                            <i class="layui-icon layui-icon-notice"></i>
+                            <p>${email!}</p>
+                        </div>
+                        
+                        <div class="info-list-item">
+                            <i class="layui-icon layui-icon-cellphone"></i>
+                            <p>
+                                ${phone!} &nbsp;&nbsp;
+                                ${shiroUserExpand.corporationPhone!}
+                            </p>
+                        </div>
+                        
+                        <div class="info-list-item">
+                            <i class="layui-icon layui-icon-location"></i>
+                            <p>${shiroUserExpand.address!}</p>
+                        </div>
+                    </div>
+           
+                </div>
+            </div>
+        </div>
+        <!-- 右 -->
+        <div class="layui-col-sm12 layui-col-md9">
+            <div class="layui-card">
+                <div class="layui-card-body layui-text">
+
+                    <div class="layui-tab layui-tab-brief" lay-filter="userInfoTab">
+                            <ul class="layui-tab-title">
+	                            <li class="layui-this">基本信息</li>
+	                            <li id="supplierPage_show">商家信息</li>
+	                        </ul>
+
+                        <div class="layui-tab-content">
+                        
+                            <!-- 基本信息 -->
+                            <div class="layui-form layui-tab-item layui-show" lay-filter="userInfoForm">
+                                <input type="hidden" id="userId" name="userId"/>
+                                <div class="layui-form user-info-form" style="max-width: 400px;padding-top: 25px;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">账号:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="account" class="layui-input" lay-verify="required" disabled/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">邮箱:<span style="color: red;">*</span></label>
+                                        <div class="layui-input-block">
+                                            <input type="email" name="email" class="layui-input" lay-verify="required|email" required/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">姓名:<span style="color: red;">*</span></label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="name" class="layui-input" lay-verify="required" required/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">出生日期:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" id="birthday" name="birthday" class="layui-input"/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">联系电话:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="phone" class="layui-input" lay-verify="phone"/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-filter="userInfoSubmit" lay-submit>
+                                                更新基本信息
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 商家材料信息 -->
+                            <div class="layui-tab-item" style="padding: 6px 25px 30px 25px;">
+                                <div class="layui-tab-content" >
+                                    <div class="layui-form layui-tab-item layui-show" lay-filter="supplierInfoForm">
+                                        <input type="hidden" name="userId"/>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">注册地址</label>
+                                            <div class="layui-input-block">
+                                                <input id="pid" name="addressId" type="hidden">
+                                                <input id="pName" name="address" placeholder="请输入上级地址名称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                         <div class="layui-form-item">
+                                            <label class="layui-form-label">法人</label>
+                                            <div class="layui-input-block">
+                                                <input name="corporation" placeholder="请输入法人姓名" type="text" class="layui-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">联系电话</label>
+                                            <div class="layui-input-block">
+                                                <input name="corporationPhone" placeholder="请输入电话" type="text" class="layui-input" lay-verify="phone"/>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">成立日期</label>
+                                            <div class="layui-input-block">
+                                                <input id="foundTime" name="foundTime" placeholder="请输入成立日期" type="text" class="layui-input" autocomplete="off" />
+                                            </div>
+                                        </div>
+                                         <div class="layui-form-item">
+                                            <label class="layui-form-label">信用代码</label>
+                                            <div class="layui-input-block">
+                                                <input name="credit" placeholder="请输入统一信用代码" type="text" class="layui-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">开户行</label>
+                                            <div class="layui-input-block">
+                                                <input name="bank" placeholder="请输入开户行" type="text" class="layui-input"/>
+                                            </div>
+                                        </div>
+                                         <div class="layui-form-item">
+                                            <label class="layui-form-label">开户行账号</label>
+                                            <div class="layui-input-block">
+                                                <input name="bankAccount" placeholder="请输入开户行账号" type="text" class="layui-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">有效期</label>
+                                            <div class="layui-input-block">
+                                                <input id="validityTime" name="validityTime" placeholder="请输入有效期" type="text" class="layui-input" autocomplete="off" />
+                                            </div>
+                                        </div>
+                                        <div class="layui-upload">
+                                          <button type="button" class="layui-btn" id="licencePic_click">营业执照</button>
+                                          <div class="layui-upload-list">
+                                            <img class="layui-upload-img" id="licencePic_show">
+                                            <input type="hidden" id="licencePic" name="licencePic" />
+                                            <p id="licencePic_rep"></p>
+                                          </div>
+                                        </div>
+                                        <div class="layui-upload">
+                                            <button type="button" class="layui-btn" id="authorizePic_click">其他材料</button>
+                                            <button type="button" class="layui-btn" style="display: none" id="authorizePic_cancel">全部清空</button>
+                                            <input type="hidden" id="authorizePic" name="authorizePic" />
+                                            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                                                <div class="layui-upload-list" id="authorizePic_show"></div>
+                                            </blockquote>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <button class="layui-btn" lay-filter="supplierSumbit" lay-submit>
+                                                    更新信息
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@}
